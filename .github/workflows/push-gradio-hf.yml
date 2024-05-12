@@ -17,7 +17,7 @@ jobs:
 
       - name: Prep files
         run: |
-          git remote add hf https://thiagohersan:@HFTOKEN@huggingface.co/spaces/thiagohersan/audio_style_transfer
+          git remote add hf https://thiagohersan:$HFTOKEN@huggingface.co/spaces/thiagohersan/audio_style_transfer
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@users.noreply.github.com"
           git checkout --orphan hf-main
