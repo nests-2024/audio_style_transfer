@@ -17,13 +17,13 @@ jobs:
 
       - name: Prep files
         run: |
-          git remote add hf https://thiagohersan:$HFTOKEN@huggingface.co/spaces/thiagohersan/audio_style_transfer
+          git clone https://thiagohersan:$HFTOKEN@huggingface.co/spaces/thiagohersan/audio_style_transfer hf-gradio
+          cd hf-gradio
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@users.noreply.github.com"
-          git checkout --orphan hf-main
-          git rm --cached -rf . &> /dev/null
           echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
 
+          cp -r ../README.md ../requirements.txt ../app.py ../models ../outs .
           git add README.md requirements.txt app.py models outs
           git commit -m "update gradio app: $GITHUB_SHA_SHORT" &> /dev/null
-          git push hf main --force
+          git push origin main --force
