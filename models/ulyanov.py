@@ -134,7 +134,7 @@ def compute_stylization(kernels,
 
 def run(content_fname,
         style_fname,
-        output_fname,
+        output_fname=None,
         n_fft=2048,
         hop_length=256,
         alpha=0.02,
@@ -188,8 +188,11 @@ def run(content_fname,
         p = np.angle(librosa.stft(x, n_fft=n_fft, hop_length=hop_length))
 
     # sf.write('prelimiter.wav', x, sr)
-    limited = limiter(x)
-    sf.write(output_fname, limited, sr)
+    x = limiter(x)
+    if output_fname is not None:
+        sf.write(output_fname, x, sr)
+    return sr, x
+
 
 
 def batch(content_path, style_path, output_path):

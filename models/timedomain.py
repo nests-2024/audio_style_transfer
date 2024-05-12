@@ -266,7 +266,7 @@ def compute_stylization(kernels,
 
 def run(content_fname,
         style_fname,
-        output_fname,
+        output_fname=None,
         norm=False,
         input_features=['real', 'imag', 'mags'],
         n_fft=4096,
@@ -324,7 +324,9 @@ def run(content_fname,
     s = unchop(result, hop_size=hop_length, frame_size=frame_size)
     # sf.write(output_fname + '.unlimited.wav', s, sr)
     s = limiter(s)
-    sf.write(output_fname, s, sr)
+    if output_fname is not None:
+        sf.write(output_fname, s, sr)
+    return sr, s
 
 
 def batch(content_path, style_path, output_path, model):
