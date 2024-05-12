@@ -15,10 +15,14 @@ jobs:
       - name: Checkout Dev Repo
         uses: actions/checkout@v3
 
-      - name: Prep files
+      - name: Push to HF
         run: |
           git clone https://thiagohersan:$HFTOKEN@huggingface.co/spaces/thiagohersan/audio_style_transfer hf-gradio
           cd hf-gradio
+          git lfs install
+          git lfs track *.wav
+          git lfs track *.mp3
+          git lfs checkout
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@users.noreply.github.com"
           echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
