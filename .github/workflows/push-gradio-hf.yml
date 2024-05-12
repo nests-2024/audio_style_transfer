@@ -1,0 +1,30 @@
+name: Deploy gradio app to hf spaces
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HFTOKEN: ${{ secrets.HF_TOKEN }}
+
+    steps:
+      - name: Checkout Dev Repo
+        uses: actions/checkout@v3
+
+      - name: Prep files
+        run: |
+          git remote add hf https://thiagohersan:@HFTOKEN@huggingface.co/spaces/thiagohersan/audio_style_transfer
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@users.noreply.github.com"
+          git checkout --orphan hf-main
+          git rm --cached -rf . &> /dev/null
+          echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+
+          git add README.md requirements.txt app.py models outs
+          git commit -m "update gradio app: $GITHUB_SHA_SHORT" &> /dev/null
+          git push hf :main
+          git push hf main
