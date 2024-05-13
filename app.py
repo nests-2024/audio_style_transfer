@@ -3,8 +3,30 @@ import gradio as gr
 from models import timedomain, ulyanov
 
 example_audios = [
-    ["outs/examples/johntejada-1.wav", "outs/examples/beat-box-2.wav"],
-    ["outs/examples/imperial.mp3", "outs/examples/usa.mp3"]
+    ["wavs/corpus/johntejada-1.wav",
+     "wavs/target/beat-box-2.wav"],
+    ["wavs/songs/imperial.mp3",
+     "wavs/songs/usa.mp3"],
+    ["wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XI_2007_xeno_01_LIMPO.mp3",
+     "wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3"],
+    ["wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XC181063-PHINOV36_0101_LIMPO.mp3",
+    "wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3"],
+    ["wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XC181063-PHINOV36_0102_LIMPO.mp3",
+    "wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3"],
+    ["wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XC181063-PHINOV36_0103_LIMPO.mp3",
+    "wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3"],
+    ["wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XC181063-PHINOV36_0104_LIMPO.mp3",
+    "wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3"],
+    ["wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3",
+     "wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XI_2007_xeno_01_LIMPO.mp3"],
+    ["wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3",
+     "wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XC181063-PHINOV36_0101_LIMPO.mp3"],
+    ["wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3",
+     "wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XC181063-PHINOV36_0102_LIMPO.mp3"],
+    ["wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3",
+     "wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XC181063-PHINOV36_0103_LIMPO.mp3"],
+    ["wavs/birds/MEX_ALTAMIRA_ORIOLE/MEX_Altamira_Oriole-ACelisM_01.mp3",
+     "wavs/birds/BR_ALAGOAS_FOLIAGE/BR_AL_XC181063-PHINOV36_0104_LIMPO.mp3"],
 ]
 
 
@@ -43,7 +65,7 @@ demo = gr.Interface(
     title="Audio Style Transfer",
     description="Combine style and content from two different audio files",
 
-    fn=run_ulyanov,
+    fn=run_timedomain,
     inputs=[
         gr.Audio(type="filepath", source="upload", label="Content"),
         gr.Audio(type="filepath", source="upload", label="Style")
@@ -59,5 +81,5 @@ demo = gr.Interface(
     analytics_enabled=None
 )
 
-#demo.launch(show_api=False, server_name="0.0.0.0")
-demo.launch(show_api=False)
+demo.launch(show_api=False, server_name="0.0.0.0")
+#demo.launch(show_api=False)
