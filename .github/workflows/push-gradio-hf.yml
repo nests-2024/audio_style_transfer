@@ -3,7 +3,7 @@ name: Deploy gradio app to hf spaces
 on:
   push:
     branches:
-      - main
+      - xyzmain
 
 jobs:
   build:
