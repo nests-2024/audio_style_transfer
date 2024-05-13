@@ -3,9 +3,7 @@ title: Audio Style Transfer
 emoji: 🦤🦩
 colorFrom: blue
 colorTo: green
-python_version: 3.7.12
-sdk: gradio
-sdk_version: 3.24.1
+sdk: docker
 app_file: app.py
 pinned: false
 license: cc-by-nc-sa-4.0
@@ -13,4 +11,3 @@ license: cc-by-nc-sa-4.0
 
 Based on:
 https://github.com/pkmital/time-domain-neural-audio-style-transfer
-

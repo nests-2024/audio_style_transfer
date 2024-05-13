@@ -27,7 +27,7 @@ jobs:
           git config --local user.email "github-actions@users.noreply.github.com"
           echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
 
-          cp -r ../README.md ../requirements.txt ../app.py ../models ../outs .
+          cp -r ../README.md ../Dockerfile ../run_docker.sh ../requirements.txt ../app.py ../models ../outs .
           git add README.md requirements.txt app.py models outs
           git commit -m "update gradio app: $GITHUB_SHA_SHORT" &> /dev/null
           git push origin main --force

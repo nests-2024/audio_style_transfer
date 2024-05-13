@@ -3,7 +3,7 @@ import gradio as gr
 from models import timedomain, ulyanov
 
 example_audios = [
-    #["outs/examples/johntejada-1.wav", "outs/examples/beat-box-2.wav"],
+    ["outs/examples/johntejada-1.wav", "outs/examples/beat-box-2.wav"],
     ["outs/examples/imperial.mp3", "outs/examples/usa.mp3"]
 ]
 
@@ -43,7 +43,7 @@ demo = gr.Interface(
     title="Audio Style Transfer",
     description="Combine style and content from two different audio files",
 
-    fn=run_timedomain,
+    fn=run_ulyanov,
     inputs=[
         gr.Audio(type="filepath", source="upload", label="Content"),
         gr.Audio(type="filepath", source="upload", label="Style")
@@ -52,7 +52,7 @@ demo = gr.Interface(
         gr.Audio(label="Output"),
     ],
 
-    #examples=example_audios,
+    examples=example_audios,
     cache_examples=True,
 
     allow_flagging="never",
