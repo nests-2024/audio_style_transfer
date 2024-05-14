@@ -33,7 +33,12 @@ def run_timedomain(content_path, style_path, sr=44100):
         stride=1,            # 1 to 3. Lower is better quality but is slower.
         sr=sr,
     )
-    return synth_sr, synth_audio
+
+    content_slug = content_path.split("/")[-1].split(" ")[0].split(".")[0][:32].split("-0-")[0]
+    style_slug = style_path.split("/")[-1].split(" ")[0].split(".")[0][:32].split("-0-")[0]
+    filename = f"c-{content_slug}_s-{style_slug}.wav"
+
+    return (synth_sr, synth_audio), filename
 
 
 def run_ulyanov(content_path, style_path, sr=44100):
@@ -60,6 +65,7 @@ demo = gr.Interface(
     ],
     outputs=[
         gr.Audio(label="Output"),
+        gr.Textbox(label="filename")
     ],
 
     examples=example_audios,
@@ -70,4 +76,3 @@ demo = gr.Interface(
 )
 
 demo.launch(show_api=False, server_name="0.0.0.0")
-#demo.launch(show_api=False)
